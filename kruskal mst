@@ -1,0 +1,52 @@
+int tree1[1000000],tree2[1000000],rank1[1000000],rank2[1000000], nodes, edges;
+pair <long long, pair<int, int> > p[1000000];
+void initialize()
+{
+    for(int i = 0;i < 1000000;++i){
+        tree1[i] = i;tree2[i]=i;
+        rank1[i]=0;rank2[i]=0;
+    }
+}
+int root(int *id,int x)
+{
+    while(id[x] != x)
+    {
+        id[x] = id[id[x]];
+        x = id[x];
+    }
+    return x;
+}
+void unite(int *parent,int *rank,int x,int y)
+    {
+        int x_root = root(parent,x);
+        int y_root = root(parent,y);
+        
+        if (rank[x_root] < rank[y_root])
+            parent[x_root] = y_root;
+        else if (rank[x_root] > rank[y_root])
+            parent[y_root] = x_root;
+        else {
+            parent[x_root] = y_root;
+            rank[y_root]++;
+        }
+    }
+ll kruskal(pair<ll, pair<int, int> > p[])
+{
+    int x, y;
+    ll cost, minimumCost = 0;
+    for(int i=edges-1;i>=0;i--)
+    {
+        x = p[i].second.first;
+        y = p[i].second.second;
+        cost = p[i].first;
+        if(cost==3){
+            
+        }
+        if(root(tree1,x) != root(tree1,y))
+        {
+            minimumCost += cost;
+            unite(tree1,rank1,x, y);
+        }    
+    }
+    return minimumCost;
+}
