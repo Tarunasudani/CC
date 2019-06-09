@@ -1,0 +1,65 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define fre freopen("in.txt","r",stdin)
+#define pii pair<pair<int,int>, int>
+#define f first
+#define s second
+#define rep(i,n) for(int i=0;i<n;i++)
+#define pb push_back
+const int INF = 1e9;
+int N,M;
+int L[100011];
+int R[100011];
+vector<int>g[100011];
+void bfs(int source,int *d) {
+    queue<int>q;
+    for(int i=1;i<=N;i++) {
+        d[i] = INF;
+    }
+    assert(source>=1 and source<=N);
+    q.push(source);
+    d[source]=0;
+    while(q.size()) {
+        int u = q.front();
+        q.pop();
+        for(auto x:g[u]) {
+            if(d[x] > d[u]+1) {
+                d[x] = d[u]+1;
+                q.push(x);
+            }
+        }
+    }
+}
+vector<int>S[100011];
+int main() {
+    freopen("in00.txt","r",stdin);
+    freopen("out00.txt","w",stdout);
+    cin >> N >> M;
+    int u,v;
+    rep(i,M) {
+        cin >> u >> v;
+        g[u].pb(v);
+        g[v].pb(u);
+    }
+    int A,B;
+    cin >> A >> B;
+    bfs(A,L);
+    bfs(B,R);
+    for(int i=1;i<=N;i++) {
+        if(L[i]+R[i]==L[B] and L[i]!=INF) {
+            S[L[i]].pb(i);
+        }
+    }
+    int ans = INF;
+    for(int i=1;i<=N;i++) {
+        if(S[i].size()==1 and (S[i][0]!= A and S[i][0]!=B)) {
+            ans = min(ans,S[i][0]);
+        }
+    }
+//    int ans;
+    assert(ans!=A and ans!=B);
+    if(ans==INF) ans =-1;
+    cout << ans;
+    cerr<<ans;
+}
