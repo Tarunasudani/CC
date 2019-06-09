@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pb push_back
+#define boost ios::sync_with_stdio(false);cin.tie(0)
+ll mod=1000000007;
+list<pair<int,int> > graph[1000000];
+int n,m,a,b;
+void shortest(int src)
+{
+    set< pair<int, int> > setds;
+    vector<int> dist(n+1, INT_MAX);
+    setds.insert(make_pair(0, src));
+    dist[src] = 0;
+    int parent[n+1];
+    parent[1]=-1;
+    while (!setds.empty())
+    {
+        pair<int, int> tmp = *(setds.begin());
+        setds.erase(setds.begin());
+        int u = tmp.second;
+        list< pair<int, int> >::iterator i;
+        for (i = graph[u].begin(); i != graph[u].end(); ++i)
+        {
+            int v = (*i).first;
+            int weight = (*i).second;
+            if (dist[v] > dist[u] + weight)
+            {
+                if (dist[v] != INT_MAX)
+                    setds.erase(setds.find(make_pair(dist[v], v)));
+                  dist[v] = dist[u] + weight;
+                  parent[v]=u;
+                setds.insert(make_pair(dist[v], v));
+            }
+        }
+    }
+    int k=b,min=INT_MAX;
+    if(dist[b]==INT_MAX)
+    cout<<-1<<endl;
+
+    else{
+          while(parent[k]!=a){
+                k=parent[k];
+                if(k<min)     //finding the minimum node in the whole path
+                min=k;
+          }
+          cout<<min<<endl;
+   }
+}
+int main(){
+      boost;
+      cin>>n>>m;
+      for(int i=0;i<m;i++){
+            int u,v;
+            cin>>u>>v;
+            graph[u].pb({v,1});
+            graph[v].pb({u,1});
+      }
+      cin>>a>>b;
+      shortest(a);
+}
