@@ -1,3 +1,12 @@
+int root (int Arr[ ] ,int i)
+{
+    while(Arr[ i ] != i)
+    {
+        Arr[ i ] = Arr[ Arr[ i ] ] ; 
+        i = Arr[ i ]; 
+    }
+    return i;
+}
 void unite(int Arr[ ],int size[ ],int A,int B)
 {
     int root_A = root(Arr,A);
@@ -15,13 +24,5 @@ void unite(int Arr[ ],int size[ ],int A,int B)
         size[root_A] += size[root_B];
      }
 }
-int root (int Arr[ ] ,int i)
-{
-    while(Arr[ i ] != i)
-    {
-        Arr[ i ] = Arr[ Arr[ i ] ] ; 
-        i = Arr[ i ]; 
-    }
-    return i;
-}
+
 // need to initialise the arr Arr[i]=i and size[i]=1 
