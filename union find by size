@@ -1,7 +1,7 @@
 void unite(int Arr[ ],int size[ ],int A,int B)
 {
-    int root_A = root(A);
-    int root_B = root(B);
+    int root_A = root(Arr,A);
+    int root_B = root(Arr,B);
     if(size[root_A] < size[root_B ])
     {
        Arr[ root_A ] = Arr[root_B];
@@ -22,4 +22,4 @@ int root (int Arr[ ] ,int i)
     }
     return i;
 }
-// need to initialise the arr Arr and size first
+// need to initialise the arr Arr[i]=i and size[i]=1 
