@@ -1,4 +1,5 @@
 int BIT[1000], a[1000], n;
+// if indexing is 0 base do x+=1 in both update and query
 void update(int x, int delta)
 {
       for(; x <= n; x += x&-x)
