@@ -1,3 +1,5 @@
+// better to make the fac array before hand for the range of n
+
 ll power(ll x, ll y, ll p) 
 { 
     ll res = 1; 
