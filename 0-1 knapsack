@@ -17,3 +17,16 @@ ll knapSack(ll W,ll wt[],ll val[],ll n)
    } 
    return K[n][W]; 
 } 
+
+// to print items in knapsack
+int res = K[n][W];
+	w = W; 
+	for (i = n; i > 0 && res > 0; i--) {
+		if (res == K[i - 1][w]) 
+			continue;		 
+		else { 
+			printf("%d ", wt[i - 1]); 
+			res = res - val[i - 1]; 
+			w = w - wt[i - 1]; 
+		} 
+	} 
