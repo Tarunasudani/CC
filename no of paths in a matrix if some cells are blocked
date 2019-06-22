@@ -17,37 +17,37 @@ void sieve()
         } 
     }  
 } 
+int a[1005][1005];
+ll dp[1005][1005];
 int main(){
     boost;
     sieve();
-    int n,m;
-    cin>>n>>m;
-    ll grid[n+1][m+1];
-    memset(grid,0,sizeof(grid));
-    for(int i=1;i<=n;i++){
-        for(int j=1;j<=m;j++){
-            cin>>arr[i][j];
-            if(prime[arr[i][j]])
-            grid[i][j]=-1;
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=m;j++)
+        {
+            cin>>a[i][j];
+            if(prime[a[i][j]]==0)
+                a[i][j]=1;
+            else
+                a[i][j]=0;
         }
     }
-    for(int i=1;i<=n;i++){
-            if(grid[i][1] == 0) grid[i][1] = 1LL;
-            else break;
-    }
-    for(int i=2;i<=m;i++){
-            if(grid[1][i] == 0) grid[1][i] = 1LL;
-            else break;
-    }
-    for(int i=2;i<=n;i++)
+    
+    dp[1][1]=1;
+    
+    for(int i=1;i<=n;i++)
     {
-            for(int j=2;j<=m;j++)
-            {
-                if(grid[i][j] == -1) continue;
-                if(grid[i-1][j] > 0) grid[i][j] = (grid[i][j] + grid[i-1][j] + MOD)%MOD;
-                if(grid[i][j-1] > 0) grid[i][j] = (grid[i][j] + grid[i][j-1] + MOD)%MOD;
-                if(grid[i-1][j-1]>0) grid[i][j] = (grid[i][j] + grid[i-1][j-1] + MOD)%MOD;
-            }
+        for(int j=1;j<=m;j++)
+        {
+            if(i==1&&j==1)
+                continue;
+            dp[i][j]=(dp[i-1][j]+dp[i][j-1]+dp[i-1][j-1])%MOD;
+            
+            if(a[i][j]==0)
+                dp[i][j]=0;
+        }
+        
     }
-    printf("%lld",grid[n][m]);
+    cout<<dp[n][m]<<"\n";
 }
