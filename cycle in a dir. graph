@@ -1,0 +1,15 @@
+vector<int> g[N];
+void dfs(int u)
+{
+  visited[u] = 1;
+  for(auto v : g[u])
+  {
+    if(!visited[v])
+      dfs(v);
+    else if(visited[v] == 1)  //cycle found
+      f = true;
+  }
+  visited[u] = 2;
+}
+// f is a flag
+// will have to run a loop in main function to make sure graph is not disconnected
