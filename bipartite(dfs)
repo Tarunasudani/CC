@@ -1,0 +1,16 @@
+bool isBipartite(vector<int> adj[],int v,unordered_map<int,int> visited, vector<int>& color) 
+{
+    for (int u : adj[v]) { 
+        if (visited[u] == 0) { 
+            visited[u] = 1; 
+            color[u] = !color[v]; 
+            if (!isBipartite(adj, u, visited, color)) 
+                return 0; 
+        } 
+        else if(color[u]==color[v]) 
+            return 0; 
+    } 
+    return 1; 
+} 
+//visited[1]=1;
+//color[1]=0;
