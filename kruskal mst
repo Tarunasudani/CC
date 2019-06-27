@@ -39,9 +39,6 @@ ll kruskal(pair<ll, pair<int, int> > p[])
         x = p[i].second.first;
         y = p[i].second.second;
         cost = p[i].first;
-        if(cost==3){
-            
-        }
         if(root(tree1,x) != root(tree1,y))
         {
             minimumCost += cost;
