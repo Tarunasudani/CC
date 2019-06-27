@@ -1,0 +1,68 @@
+// tarun -iiita
+#include<bits/stdc++.h>
+using namespace std;
+#define boost ios::sync_with_stdio(false);cin.tie(0)
+#define pb push_back
+#define ll long long
+#define MP make_pair
+#define mod 1000000007
+pair<int,int> bfs(int u,vector<pair<int,int> > adj[],int V)
+{
+    int dis[V+1];
+    memset(dis, -1, sizeof(dis));
+    queue<int> q;
+    q.push(u);
+    dis[u] = 0;
+    while (!q.empty())
+    {
+        int t = q.front();       q.pop();
+        for ( int it = 0; it < adj[t].size(); it++)
+        {
+            int v = adj[t][it].first;
+            if (dis[v]==-1)
+            {
+                q.push(v);
+                dis[v] = dis[t] +  adj[t][it].second;
+            }
+        }
+    }
+    int maxDis = 0;
+    int nodeIdx;
+    for (int i = 1; i <= V; i++)
+    {
+        if (dis[i] > maxDis)
+        {
+            maxDis = dis[i];
+            nodeIdx = i;
+        }
+    }
+    return MP(nodeIdx, maxDis);
+}
+void longestPathLength(vector<pair<int,int> > graph[],int n)
+{
+    pair<int,int>t1,t2;
+    t1 = bfs(1,graph,n);
+    t2 = bfs(t1.first,graph,n);
+    cout <<t2.second<<"\n";
+}
+int main(){
+      boost;
+      int t;
+      cin>>t;
+      while(t--){
+            int n;
+            cin>>n;
+            vector<pair<int,int> > graph[50001];
+            for(int i=0;i<n-1;i++){
+                  int a,b,c;
+                  cin>>a>>b>>c;
+                  pair<int,int> p;
+                  p=MP(b,c);
+                  graph[a].pb(p);
+                  p=MP(a,c);
+                  graph[b].pb(p);
+            }
+            longestPathLength(graph,n+1);
+      }
+
+}
