@@ -81,6 +81,30 @@ void unite(int Arr[ ],int size[ ],int A,int B)
      }
 }
 
+int BIT[1000], a[1000], n;
+// if indexing is 0 base do x+=1 in both update and query
+void update(int x, int delta)
+{
+      for(; x <= n; x += x&-x)
+        BIT[x] += delta;
+}
+int query(int x)
+{
+     int sum = 0;
+     for(; x > 0; x -= x&-x)
+        sum += BIT[x];
+     return sum;
+}
+
+/*  first update the tree as follows
+     for(i = 1; i <= n; i++)
+     {
+           scanf(“%d”, &a[i]);
+           update(i, a[i]);
+     }
+     
+     */
+
 void fun(){
     
 }
