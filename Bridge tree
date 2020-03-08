@@ -1,0 +1,27 @@
+int dfs(int x, int par = -1)
+{
+	tin[x] = T++;
+	fup[x] = tin[x];
+	for(auto y : g[x])
+	{
+	 	if(tin[y] > 0)
+	 	{
+	 		if(par != y)
+	 			fup[x] = min(fup[x], tin[y]);
+	 	}
+	 	else
+	 	{
+	 	 	int f = dfs(y, x);
+	 	 	fup[x] = min(fup[x], f);
+	 	 	if(f > tin[x])
+	 	 		bridges.push_back(make_pair(x, y));
+	 	 	else
+	 	 		unite(x, y);
+	 	}
+	}
+	tout[x] = T++;                                      
+	return fup[x];
+}      
+
+
+//bridges will store the final edges of the bridge tree 
