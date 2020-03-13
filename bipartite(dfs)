@@ -1,4 +1,10 @@
-bool isBipartite(vector<int> adj[],int v,unordered_map<int,int> visited, vector<int>& color) 
+
+//global
+//vector<int> adj[],unordered_map<int,int> visited, vector<int>& color
+
+
+
+bool isBipartite(int v) 
 {
     for (int u : adj[v]) { 
         if (visited[u] == 0) { 
