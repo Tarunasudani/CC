@@ -10,7 +10,7 @@ bool isBipartite(int v)
         if (visited[u] == 0) { 
             visited[u] = 1; 
             color[u] = !color[v]; 
-            if (!isBipartite(adj, u, visited, color)) 
+            if (!isBipartite(u)) 
                 return 0; 
         } 
         else if(color[u]==color[v]) 
