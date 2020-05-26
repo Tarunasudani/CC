@@ -1,0 +1,44 @@
+Given 2 integers A and B and an array of integars C of size N.
+
+Element C[i] represents length of ith board.
+
+You have to paint all N boards [C0, C1, C2, C3 … CN-1]. There are A painters available and each of them takes B units of time to paint 1 unit of board.
+
+Calculate and return minimum time required to paint all boards under the constraints that any painter will only paint contiguous sections of board.
+
+
+
+
+#include<bits/stdc++.h>
+int find(vector<int> arr,int maxLen) { 
+    int n = arr.size();
+    int total = 0, numPainters = 1; 
+    for (int i = 0; i < n; i++){ 
+        total += arr[i]; 
+        if (total > maxLen){
+            total = arr[i]; 
+            numPainters++; 
+        } 
+    } 
+  
+    return numPainters; 
+}
+
+int Solution::paint(int A, int B, vector<int> &C) {
+    long long int b = B;
+    long long int low = *(max_element(C.begin(),C.end()));
+    long long int high = accumulate(C.begin(),C.end(),0);
+    
+    while(low < high){
+        int mid = low+ (high - low)/2;
+        int requiredPainters = find(C,mid);
+        
+        if(requiredPainters <= A){
+            high = mid;
+        }
+        else
+        low = mid + 1;
+    }
+    
+    return (low%10000003ll * b%10000003ll)%10000003ll;
+}
