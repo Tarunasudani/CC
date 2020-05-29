@@ -1,0 +1,26 @@
+// Binary search to find the element in rotated sorted array
+
+
+int pivoted(vector<int> v,int l,int h,int val){
+        if(l>h)
+            return -1;
+        int mid = l + (h-l)/2;
+        
+        if(v[mid] == val)
+            return mid;
+        
+        // left part is sorted
+        if(v[l] <= v[mid]){
+            if (val >= v[l] && val <= v[mid]) 
+                return pivoted(v, l, mid-1, val); 
+            return pivoted(v,mid+1,h,val);
+        }
+        
+        if (val >= v[mid] && val <= v[h]) 
+        return pivoted(v, mid+1, h, val); 
+  
+        return pivoted(v, l, mid-1, val); 
+        
+        
+        
+    }
