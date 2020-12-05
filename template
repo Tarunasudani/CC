@@ -17,6 +17,9 @@ using namespace std;
 #define vect vector<ll>
 #define boost ios_base::sync_with_stdio(false);cin.tie(NULL)
 #define mod  1000000007
+#define OJ \
+    freopen("input.txt", "r", stdin); \
+    freopen("output.txt", "w", stdout);
 #define int  long long
 ll fac[500005];
 map<int,int> prime;
