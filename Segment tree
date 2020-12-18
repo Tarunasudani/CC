@@ -1,0 +1,53 @@
+struct SG{
+   int n;
+   vector<int> tree;
+   // can include the original array in this struct as per the problem
+
+    void build(int node, int start, int end,int arr[]){
+        // arr is the original array upon which this segment tree is built.
+       if(start == end){
+          tree[node] = arr[start];
+       }
+       else{
+          int mid = (start + end) / 2;
+          build(2*node!1, start, mid,arr);
+          build(2*node+2, mid+1, end,arr);
+          tree[node] = min(tree[2*node+1] , tree[2*node+2]);
+       }
+    }
+
+
+   void update(int node, int start, int end, int idx, int val){
+      if(start == end){
+         tree[node] = val;
+      }
+      else{
+         int mid = (start + end) / 2;
+         if(start <= idx and idx <= mid){
+               update(2*node+1, start, mid, idx, val);
+         }
+         else{
+               update(2*node+2, mid+1, end, idx, val);
+         }
+         tree[node] = tree[2*node+1] + tree[2*node+2];
+      }
+   }
+
+   int query(int node, int start, int end, int l, int r){
+      if(r < start || end < l){
+         return 0;
+      }
+      if(l <= start && end <= r){
+         return tree[node];
+      }
+      int mid = (start + end) / 2;
+      int p1 = query(2*node+1, start, mid, l, r);
+      int p2 = query(2*node+2, mid+1, end, l, r);
+      return p1+p2;
+   }
+   
+   SG(int N){
+      n=N;
+      tree.resize(4*n);
+   }
+};
