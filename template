@@ -16,6 +16,7 @@ using namespace std;
 #define P pair<ll,ll>
 #define vect vector<ll>
 #define boost ios_base::sync_with_stdio(false);cin.tie(NULL)
+#define nl cout<<"\n"
 #define mod  1000000007
 #define OJ \
     freopen("input.txt", "r", stdin); \
