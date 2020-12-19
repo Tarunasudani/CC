@@ -13,8 +13,7 @@ using namespace std;
 #define ub upper_bound
 #define bs binary_search
 #define S second
-#define P pair<ll,ll>
-#define vect vector<ll>
+#define pii pair<ll,ll>
 #define boost ios_base::sync_with_stdio(false);cin.tie(NULL)
 #define nl cout<<"\n"
 #define mod  1000000007
