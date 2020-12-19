@@ -1,28 +1,22 @@
-int root (int Arr[ ] ,int i)
-{
-    while(Arr[ i ] != i)
-    {
-        Arr[ i ] = Arr[ Arr[ i ] ] ; 
-        i = Arr[ i ]; 
+int root(int Arr[],int i){
+    while(Arr[i] != i){
+        Arr[i] = Arr[Arr[i]] ; 
+        i = Arr[i]; 
     }
     return i;
 }
-void unite(int Arr[ ],int size[ ],int A,int B)
-{
-    int root_A = root(Arr,A);
-    int root_B = root(Arr,B);
-    if(root_A==root_B)
+
+void unite(int Arr[],int size[],int a,int b){
+    int r1 = root(Arr,a);
+    int r2 = root(Arr,b);
+    if(r1==r2)
     return;
-    if(size[root_A] < size[root_B ])
-    {
-       Arr[ root_A ] = root_B;
-      size[root_B] += size[root_A];
+    if(size[r1] < size[r2]){
+       Arr[r1] = r2;
+      size[r2] += size[r1];
     }
-    else
-    {
-       Arr[ root_B ] = root_A;
-        size[root_A] += size[root_B];
+    else{
+       Arr[r2] = r1;
+        size[r1] += size[r2];
      }
 }
-
-// need to initialise the arr Arr[i]=i and size[i]=1 
