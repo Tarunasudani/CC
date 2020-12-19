@@ -21,3 +21,37 @@ for(int i=1;i<18;i++){
             dp[j][i]=dp[dp[j][i-1]][i-1];
         }
     }
+
+
+
+// Max edge between 2 nodes in a tree using binary lifting
+
+int max_edge(int u,int v){
+   int ans = 0;
+	if(depth[u]<depth[v])
+		swap(u,v);	
+	for(int i = 17; i >= 0; --i)	
+		if(depth[u]-(1<<i)>=depth[v]){
+         ans = max(ans,mx[u][i]);
+         u=dp[u][i];
+         
+      }
+			
+	if(u==v)
+		return ans;	
+	for(int i = 17; i >= 0; --i)
+		if(dp[u][i]!=dp[v][i]){
+         ans = max(ans , mx[u][i]);
+         ans = max(ans , mx[v][i]);
+			u=dp[u][i];
+			v=dp[v][i];
+		}
+   ans = max({ans,mx[u][0],mx[v][0]});			
+	return ans;		
+}
+for(int i=1;i<18;i++){
+        for(int j=1;j<=n;j++){
+            dp[j][i]=dp[dp[j][i-1]][i-1];
+            mx[j][i] = max(mx[j][i-1] , mx[dp[j][i-1]][i-1]);
+        }
+    }
