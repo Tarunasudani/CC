@@ -1,16 +1,17 @@
+vector<pair<int,int> > bridges;
+map<int,int> tin,tou,fup;
+int T;
+
 int dfs(int x, int par = -1)
 {
 	tin[x] = T++;
 	fup[x] = tin[x];
-	for(auto y : g[x])
-	{
-	 	if(tin[y] > 0)
-	 	{
+	for(auto y : g[x]){
+	 	if(tin[y] > 0){
 	 		if(par != y)
 	 			fup[x] = min(fup[x], tin[y]);
 	 	}
-	 	else
-	 	{
+	 	else{
 	 	 	int f = dfs(y, x);
 	 	 	fup[x] = min(fup[x], f);
 	 	 	if(f > tin[x])
