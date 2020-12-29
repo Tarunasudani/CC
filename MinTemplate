@@ -1,0 +1,41 @@
+// Tarun IIITA
+//Тарун Асудани 
+//Не читайте этот код
+ 
+#include<bits/stdc++.h>
+using namespace std;
+#define ll   long long
+#define pb push_back
+#define pf push_front
+#define MP make_pair
+#define all(v) v.begin(),v.end()
+#define F first
+#define lb lower_bound
+#define ub upper_bound
+#define bs binary_search
+#define S second
+#define pii pair<ll,ll>
+#define boost ios_base::sync_with_stdio(false);cin.tie(NULL)
+#define mod  1000000007
+#define nl cout<<"\n"
+#define int long long
+#define OJ \
+    freopen("input.txt", "r", stdin); \
+    freopen("output.txt", "w", stdout);
+   
+
+void solve(){
+   
+}
+
+signed main(){
+   #ifndef ONLINE_JUDGE
+      OJ;
+	#endif
+   boost;
+   int t=1;
+   //cin>>t;
+   while(t--){
+      solve();
+   }
+}
