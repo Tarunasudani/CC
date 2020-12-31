@@ -8,6 +8,7 @@ using namespace std;
 #define pb push_back
 #define pf push_front
 #define MP make_pair
+#define all(v) v.begin(),v.end()
 #define F first
 #define lb lower_bound
 #define ub upper_bound
@@ -15,115 +16,35 @@ using namespace std;
 #define S second
 #define pii pair<ll,ll>
 #define boost ios_base::sync_with_stdio(false);cin.tie(NULL)
-#define nl cout<<"\n"
 #define mod  1000000007
+#define nl cout<<"\n"
+#define int long long
 #define OJ \
     freopen("input.txt", "r", stdin); \
     freopen("output.txt", "w", stdout);
-#define int  long long
-ll fac[500005];
-map<int,int> prime;
- 
-ll power(ll x, ll y, ll p) { 
-    ll res = 1; 
-    x = x % p;
-    while (y>0) 
-    { 
-        if (y&1) 
-            res = ((res%p)*(x%p))%p; 
-        y = y>>1; 
-        x = ((x%p)*(x%p))%p; 
-    } 
-    return res; 
-}
-ll modInverse(ll n, ll p) { 
-    return power(n,p-2,p); 
-} 
-ll nCrModPFermat(ll n, ll r, ll p) {  
-   if (r==0) 
-      return 1;
-      if(r==n)
-      return 1;
-     
+
+template <typename T,size_t s> void printa(const T (&A)[s]){for(size_t i=0;i<s;++i) cout<<A[i]<<" ";}
     
-    return (((fac[n]%p)*(modInverse(fac[r],p)%p))%p * (modInverse(fac[n-r],p)%p))%p; 
-}
-void sieve(ll n) {   
-    for (int p=2; p*p<=n; p++) { 
-        if (!prime[p]) { 
-            for (int i=p*p; i<=n; i += p) 
-                prime[i] = 1; 
-        } 
-    } 
-}
+template <typename T> void printv(T const& stl){ typename T::const_iterator it; 
+    typename T::const_iterator end(stl.end()); for(it=stl.begin(); it!=end; ++it)cout<<*it<<' ';}
+template <class T>  inline void smax(T &x,T y){ x = max((x), (y));}
+template <class T>  inline void smin(T &x,T y){ x = min((x), (y));}
 
-int root (int Arr[ ] ,int i)
-{
-    while(Arr[ i ] != i)
-    {
-        Arr[ i ] = Arr[ Arr[ i ] ] ; 
-        i = Arr[ i ]; 
-    }
-    return i;
-}
-void unite(int Arr[ ],int size[ ],int A,int B)
-{
-    int root_A = root(Arr,A);
-    int root_B = root(Arr,B);
-    if(root_A==root_B)
-    return;
-    if(size[root_A] < size[root_B ])
-    {
-       Arr[ root_A ] = root_B;
-      size[root_B] += size[root_A];
-    }
-    else
-    {
-       Arr[ root_B ] = root_A;
-        size[root_A] += size[root_B];
-     }
-}
+template<typename T> void print(T t) { cout<<t<<' '; }
+template<typename T> void printn(T t) { cout<<t<<'\n'; }
 
-int BIT[1000], a[1000], n;
-// if indexing is 0 base do x+=1 in both update and query
-void update(int x, int delta)
-{
-      for(; x <= n; x += x&-x)
-        BIT[x] += delta;
-}
-int query(int x)
-{
-     int sum = 0;
-     for(; x > 0; x -= x&-x)
-        sum += BIT[x];
-     return sum;
-}
-
-/*  first update the tree as follows
-     for(i = 1; i <= n; i++)
-     {
-           scanf(“%d”, &a[i]);
-           update(i, a[i]);
-     }
-     
-     */
-
-void fun(){
-    
+void solve(){
+	
 }
 
 signed main(){
-	boost;
-    int tc;
-    // fac[0] = 1; 
-    // for (int i=1 ; i<=100005; i++) 
-    //     fac[i] = (fac[i-1]*i)%mod; 
-    tc=1;
-    
-    //cin>>tc;
-    while(tc--){
-    	fun();
-
+#ifndef ONLINE_JUDGE
+      OJ;
+#endif
+    boost;
+    int t=1;
+    //cin>>t;
+    while(t--){
+      solve();
     }
- 
 }
