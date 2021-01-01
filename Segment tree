@@ -10,7 +10,7 @@ struct SG{
        }
        else{
           int mid = (start + end) / 2;
-          build(2*node!1, start, mid,arr);
+          build(2*node+1, start, mid,arr);
           build(2*node+2, mid+1, end,arr);
           tree[node] = min(tree[2*node+1] , tree[2*node+2]);
        }
