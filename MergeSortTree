@@ -1,0 +1,26 @@
+struct MergeSortTree {
+	vector<int>tree[1000];
+
+	void build( int cur , int l , int r ,int a[]) {
+	    if(l>r) return;
+	     if( l==r ) {
+	            tree[cur].push_back(a[l]);
+	            return ;
+	     }
+	     int mid = (r+l)/2;
+	     build(2*cur+1 , l , mid , a ); 
+	     build(2*cur+2 , mid+1 , r , a); 
+	     tree[cur].resize( tree[2*cur + 1].size() + tree[2*cur + 2].size() );
+	     merge( all(tree[2*cur+1]) , all(tree[2*cur+2]) , tree[cur].begin() ); 
+	}
+	 // query number of elements (less then / greater then) K in a given range
+	int query( int cur, int l, int r, int x, int y, int k) {
+	     if( r < x || l > y ) return 0; 
+	      
+	     if( x<=l && r<=y )
+	      	return lower_bound(tree[cur].begin(),tree[cur].end(),k)-tree[cur].begin();
+	      
+	     int mid=(l+r)/2;
+	     return query(2*cur+1,l,mid,x,y,k)+query(2*cur+2,mid+1,r,x,y,k);
+	}
+};
