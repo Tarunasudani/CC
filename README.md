@@ -16,6 +16,7 @@ https://cp-algorithms.com/graph/hld.html
 https://codeforces.com/blog/entry/22072
 
 
+SGtree applications : http://e-maxx.ru/algo/segment_tree
 
 
 stress testing : 
