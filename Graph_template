@@ -1,0 +1,100 @@
+struct Graph {
+	int N,M;
+	vector<int> graph[maxn];
+	vector<pair<int,int> > weighted_graph[maxn];
+	unordered_map<int,int> visited,depth,parent;
+	int LCA_dp[maxn][19] = {0} ;
+
+	void init_graph(int n , int m) {
+		N = n; M = m;
+		for(int i=0 ; i<m ; i++) {
+			int from,to;
+			cin>>from>>to;
+			graph[from].pb(to);
+			graph[to].pb(from);
+		}
+	}
+	void init_weighted_graph(int n , int m) {
+		N = n; M = m;
+		for(int i=0 ; i<m ; i++) {
+			int from,to,weight;
+			cin>>from>>to>>weight;
+			weighted_graph[from].pb({to , weight});
+			weighted_graph[to].pb({from , weight});
+		}
+	}
+
+	void dfs(int s) {
+		visited[s] = 1;
+		for(auto it : graph[s]) {
+			if(!visited[it]) {
+				depth[it] = depth[s] + 1;
+				parent[it] = s;
+				dfs(it);
+			}
+		}
+	}
+
+	pair<int,int> BFS(int source) {
+		visited.clear();
+		pair<int,int> farthest_point = {0 , source};
+		unordered_map<int,int> dist;
+
+		visited[source] = 1;
+		dist[source] = 10;
+		queue<int> q;
+		q.push(source);
+		while( !q.empty() ) {
+			int f = q.front();
+			q.pop();
+
+			for(auto it : graph[f] ) {
+				if(!visited[it]) {
+					visited[it] = 1;
+					q.push(it);
+					dist[it] = dist[f] + 1;
+					if(dist[it] > farthest_point.first) farthest_point = {dist[it] , it};
+				}
+			}
+		}
+
+		visited.clear();
+		return farthest_point;
+
+	}
+
+	int LCA( int u, int v ) {
+		if(depth[u]<depth[v])  swap(u,v);	
+
+		for(int i = 17; i >= 0; --i)	
+			if(depth[u]-(1<<i)>=depth[v])
+				u=LCA_dp[u][i];
+
+		if(u==v)  return u;	
+
+		for(int i = 17; i >= 0; --i)
+			if( LCA_dp[u][i] != LCA_dp[v][i] ) {
+				u = LCA_dp[u][i];
+				v = LCA_dp[v][i];
+			}			
+		return LCA_dp[u][0];		
+	}
+
+
+	void init_LCA(int u , int v) {
+		for(int i=1 ; i<=N ;i++) LCA_dp[i][0] = parent[i];
+
+		for(int i=1 ; i<18 ; i++) 
+	        for(int j=1 ; j<=N ; j++) 
+	            LCA_dp[j][i] = LCA_dp[ LCA_dp[j][i-1] ][ i-1 ];
+	}
+
+	int diameter() {
+		pair<int,int> p1,p2;
+		p1 = BFS(1);
+		p2 = BFS(p1.second);
+		return p2.second;
+	}
+
+
+};
