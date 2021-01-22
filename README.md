@@ -5,6 +5,9 @@ templates
 dp on trees tutorial:
 https://codeforces.com/blog/entry/20935
 
+DIGIT-DP boiler plate :
+https://github.com/flash7even/Programming-Contest/blob/master/Code%20Repository/Dynamic%20Programming/Digit%20DP/Digit-DP.cpp
+
 
 topics:
 https://www.iarcs.org.in/inoi/online-study-material/topics/
