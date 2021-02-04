@@ -1,18 +1,22 @@
+void propagate(int node, int r, int l) {
+  tree[node] +=  lazy[node]*( r- l + 1);
+   if(start != end){
+      lazy[node*2] += lazy[node];
+      lazy[node*2+1] += lazy[node];
+    }
+    lazy[node] = 0;
+}
+
 void updateRange(int node, int start, int end, int l, int r, int val){
     
     if(start > end or start > r or end < l)
         return;
     if(lazy[node] != 0){
-        tree[node] +=  lazy[node];
-        if(start != end){
-            lazy[node*2] += lazy[node];
-            lazy[node*2+1] += lazy[node];
-        }
-        lazy[node] = 0;
+        propagate(node, l, r);
     }
     
     if(start >= l and end <= r){
-        tree[node] +=  val;
+        tree[node] +=  val*(r - l + 1);
         if(start != end){
             lazy[node*2] += val;
             lazy[node*2+1] += val;
@@ -22,26 +26,17 @@ void updateRange(int node, int start, int end, int l, int r, int val){
     int mid = (start + end) / 2;
     updateRange(node*2, start, mid, l, r, val);
     updateRange(node*2 + 1, mid + 1, end, l, r, val);
-    tree[node] = min(tree[node*2],tree[node*2+1]);
+    tree[node] = tree[node*2] + tree[node*2+1];
 }
-void queryRange(int node, int start, int end, int l, int r,int x){
+int queryRange(int node, int start, int end, int l, int r){
     if(start > end or start > r or end < l)
-        return ;      
+        return 0;      
     if(lazy[node] != 0){
-        tree[node] +=  lazy[node]; 
-        if(start != end){
-            lazy[node*2] += lazy[node];  
-            lazy[node*2+1] += lazy[node];
-        }
-        lazy[node] = 0;
+        propagate(node, l, r);
     }
     if(start >= l and end <= r){
-        if(tree[node]>=x){
-        ans+=(end-start+1);
-        return ;}
+        return tree[node];
     }
     int mid = (start + end) / 2;
-    queryRange(node*2, start, mid, l, r,x);
-     queryRange(node*2 + 1, mid + 1, end, l, r,x); 
-    return ;
+    return queryRange(node*2, start, mid, l, r) + queryRange(node*2 + 1, mid + 1, end, l, r); 
 }
