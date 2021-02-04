@@ -1,4 +1,4 @@
-void propagate(int node, int r, int l) {
+void propagate(int node, int l, int r) {
   tree[node] +=  lazy[node]*( r- l + 1);
    if(start != end){
       lazy[node*2] += lazy[node];
@@ -12,7 +12,7 @@ void updateRange(int node, int start, int end, int l, int r, int val){
     if(start > end or start > r or end < l)
         return;
     if(lazy[node] != 0){
-        propagate(node, l, r);
+        propagate(node, start, end);
     }
     
     if(start >= l and end <= r){
@@ -32,7 +32,7 @@ int queryRange(int node, int start, int end, int l, int r){
     if(start > end or start > r or end < l)
         return 0;      
     if(lazy[node] != 0){
-        propagate(node, l, r);
+        propagate(node, start, end);
     }
     if(start >= l and end <= r){
         return tree[node];
