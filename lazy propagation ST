@@ -16,7 +16,7 @@ void updateRange(int node, int start, int end, int l, int r, int val){
     }
     
     if(start >= l and end <= r){
-        tree[node] +=  val*(r - l + 1);
+        tree[node] +=  val*(end - start + 1);
         if(start != end){
             lazy[node*2] += val;
             lazy[node*2+1] += val;
