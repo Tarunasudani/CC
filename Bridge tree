@@ -1,6 +1,6 @@
 vector<pair<int,int> > bridges;
 map<int,int> tin,tout,fup;
-int T;
+int T = 1;
 
 int dfs(int x, int par = -1)
 {
