@@ -25,3 +25,8 @@ SGtree applications : http://e-maxx.ru/algo/segment_tree
 stress testing : 
 https://ali-ibrahim137.github.io/competitive/programming/2020/08/23/Stress-Testing.html
 https://packagecontrol.io/packages/CppFastOlympicCoding
+
+
+advanced snippets :
+https://github.com/mochow13/competitive-programming-library
+https://ncduy0303.github.io/Competitive-Programming/
