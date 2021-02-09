@@ -11,7 +11,7 @@ struct MergeSortTree {
 	     build(2*cur+1 , l , mid , a ); 
 	     build(2*cur+2 , mid+1 , r , a); 
 	     tree[cur].resize( tree[2*cur + 1].size() + tree[2*cur + 2].size() );
-	     merge( all(tree[2*cur+1]) , all(tree[2*cur+2]) , tree[cur].begin() ); 
+	     merge( tree[2*cur+1].begin(), tree[2*cur+1].end() , tree[2*cur+2].begin(), tree[2*cur+2].end() , tree[cur].begin() ); 
 	}
 	 // query number of elements (less then / greater then) K in a given range
 	int query( int cur, int l, int r, int x, int y, int k) {
