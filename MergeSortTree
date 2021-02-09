@@ -1,5 +1,5 @@
 struct MergeSortTree {
-	vector<int>tree[1000];
+	vector<int>tree[1000005];
 
 	void build( int cur , int l , int r ,int a[]) {
 	    if(l>r) return;
