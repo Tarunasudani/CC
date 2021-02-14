@@ -9,7 +9,7 @@ struct DSU {
     }
 
     void unite(int a,int b){
-        int r1 = root(Arr,a), r2 = root(Arr,b);
+        int r1 = root(a), r2 = root(b);
         if(r1==r2)
             return;
         if(size[r1] < size[r2]) {
