@@ -1,6 +1,6 @@
 struct DSU {
-    int Arr[100005], size[100005];
-    int root(int Arr[],int i){
+    vector<int> Arr, size;
+    int root(int i){
         while(Arr[i] != i){
             Arr[i] = Arr[Arr[i]] ; 
             i = Arr[i]; 
@@ -8,7 +8,7 @@ struct DSU {
         return i;
     }
 
-    void unite(int Arr[],int size[],int a,int b){
+    void unite(int a,int b){
         int r1 = root(Arr,a), r2 = root(Arr,b);
         if(r1==r2)
             return;
@@ -22,8 +22,10 @@ struct DSU {
         }
     }
 
-    void init() {
-        for( int i=0; i<=100000; i++ ) {
+    void init(N) {
+        Arr.resize(N + 1);
+        size.resize(N + 1);
+        for( int i=0; i <= N; i++ ) {
             Arr[i] = i;
             size[i] = 1;
         }
