@@ -1,22 +1,31 @@
-int root(int Arr[],int i){
-    while(Arr[i] != i){
-        Arr[i] = Arr[Arr[i]] ; 
-        i = Arr[i]; 
+struct DSU {
+    int Arr[100005], size[100005];
+    int root(int Arr[],int i){
+        while(Arr[i] != i){
+            Arr[i] = Arr[Arr[i]] ; 
+            i = Arr[i]; 
+        }
+        return i;
     }
-    return i;
-}
 
-void unite(int Arr[],int size[],int a,int b){
-    int r1 = root(Arr,a);
-    int r2 = root(Arr,b);
-    if(r1==r2)
-    return;
-    if(size[r1] < size[r2]){
-       Arr[r1] = r2;
-      size[r2] += size[r1];
+    void unite(int Arr[],int size[],int a,int b){
+        int r1 = root(Arr,a), r2 = root(Arr,b);
+        if(r1==r2)
+            return;
+        if(size[r1] < size[r2]) {
+            Arr[r1] = r2;
+            size[r2] += size[r1];
+        }
+        else {
+            Arr[r2] = r1;
+            size[r1] += size[r2];
+        }
     }
-    else{
-       Arr[r2] = r1;
-        size[r1] += size[r2];
-     }
-}
+
+    void init() {
+        for( int i=0; i<=100000; i++ ) {
+            Arr[i] = i;
+            size[i] = 1;
+        }
+    }
+};
