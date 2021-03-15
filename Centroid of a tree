@@ -1,0 +1,25 @@
+// calculate parent and subtree_size for the tree first
+
+int get_max(int u) {
+	int cur_root = u;
+	bool flag = true;
+	while(flag) {
+		flag = false;
+		for(auto v:graph[cur_root]) {
+			if(v == parent[cur_root]) continue;
+			if( 2 * subtree_size[v] > n ) {
+				cur_root = v;
+				flag = true;
+				break;
+			}
+		}
+	}
+
+    // This is to get the centroid with highest number
+	for(auto v:graph[cur_root]) {
+		if(v == parent[cur_root]) continue;
+		if( 2 * subtree_size[v] == n && v > cur_root )
+			return v;
+	}
+	return cur_root;
+}
