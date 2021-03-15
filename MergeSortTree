@@ -25,6 +25,19 @@ struct MergeSortTree {
 	}
 };
 
+// update operation for when uing set as the tree node
+inline void update (int u,int s,int e,int idx) {
+        if(idx<s || idx>e) return;
+
+        tree[u].erase(arr[idx],idx);
+
+        if(s==e) return;
+        int m=(s+e)/2;
+        
+        if(idx<=m) update(2*u+1,s,m,idx);
+        else update(2*u+2,m+1,e,idx);
+}
+
 // Might be useful for similar questions
 // Declare arrays l and r. 
     int l[N], r[N];
